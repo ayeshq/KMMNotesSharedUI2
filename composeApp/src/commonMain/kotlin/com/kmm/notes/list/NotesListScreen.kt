@@ -22,6 +22,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,6 +38,8 @@ fun NotesListScreen(
 ) {
     val viewModel = koinViewModel<NotesListViewModel>()
     val state by remember { viewModel.state }
+
+    val allNotes = remember { mutableStateOf(state.notes) }
 
     Scaffold(
         modifier = modifier,
@@ -86,7 +89,7 @@ fun NotesListScreen(
                         editNote(noteId)
                     }
 
-                    items(items = state.notes) {
+                    items(items = allNotes.value) {
                         NoteCard(
                             note = it,
                             modifier = modifier,
