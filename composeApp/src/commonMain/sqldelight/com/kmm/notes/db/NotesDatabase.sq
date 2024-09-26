@@ -5,17 +5,17 @@ CREATE TABLE Note (
     content TEXT NOT NULL
 );
 
--- Insert
+insertNote:
 INSERT INTO Note (title, content) VALUES (?, ?);
 
--- Update by id
+updateNotByid:
 UPDATE Note SET title = ?, content = ? WHERE id = ?;
 
--- Select all
+selectAllNotes:
 SELECT * FROM Note;
 
--- Select by id
+selectNotById:
 SELECT * FROM Note WHERE id = ?;
 
--- Delete by id
+deleteNoteById:
 DELETE FROM Note WHERE id = ?;
