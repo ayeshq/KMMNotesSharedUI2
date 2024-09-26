@@ -49,7 +49,7 @@ fun NotesListScreen(
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 //Navigate to the edit screen, with -1L as the note ID to indicate a new note
-                editNote(100L)
+                editNote(-1L)
             }) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add Note")
             }

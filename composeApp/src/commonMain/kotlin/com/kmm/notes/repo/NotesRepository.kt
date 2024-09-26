@@ -6,11 +6,20 @@ interface NotesRepository {
 
     suspend fun getAllNotes(): List<Note>
 
-    suspend fun addNote(note: Note)
+    suspend fun addNote(
+        title: String,
+        content: String
+    )
 
     suspend fun getNoteById(id: Long): Note?
 
-    suspend fun updateNote(note: Note)
+    suspend fun updateNote(
+        id: Long,
+        title: String,
+        content: String
+    )
 
     suspend fun deleteNote(note: Note)
+
+    suspend fun latestNoteId(): Long
 }

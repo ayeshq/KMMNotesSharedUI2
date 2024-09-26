@@ -8,7 +8,7 @@ CREATE TABLE Note (
 insertNote:
 INSERT INTO Note (title, content) VALUES (?, ?);
 
-updateNotByid:
+updateNoteByid:
 UPDATE Note SET title = ?, content = ? WHERE id = ?;
 
 selectAllNotes:
@@ -19,3 +19,6 @@ SELECT * FROM Note WHERE id = ?;
 
 deleteNoteById:
 DELETE FROM Note WHERE id = ?;
+
+lastestNoteId:
+SELECT last_insert_rowid();

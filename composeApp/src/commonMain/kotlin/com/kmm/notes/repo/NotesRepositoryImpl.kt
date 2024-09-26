@@ -15,11 +15,11 @@ class NotesRepositoryImpl(
     override suspend fun getAllNotes(): List<Note> =
         dbQuery.selectAllNotes(::mapNote).executeAsList()
 
-    override suspend fun addNote(note: Note) {
-        dbQuery.insertNote(
-            title = note.title,
-            content = note.content
-        )
+    override suspend fun addNote(
+        title: String,
+        content: String
+    ) {
+        dbQuery.insertNote(title, content)
     }
 
     override suspend fun getNoteById(id: Long): Note? =
@@ -29,18 +29,24 @@ class NotesRepositoryImpl(
                 ::mapNote
             ).executeAsOneOrNull()
 
-    override suspend fun updateNote(note: Note) {
+    override suspend fun updateNote(
+        id: Long,
+        title: String,
+        content: String
+    ) {
         dbQuery
-            .updateNotByid(
-                id = note.id,
-                title = note.title,
-                content = note.content
+            .updateNoteByid(
+                id = id,
+                title = title,
+                content = content
             )
     }
 
     override suspend fun deleteNote(note: Note) {
         dbQuery.deleteNoteById(note.id)
     }
+
+    override suspend fun latestNoteId(): Long = dbQuery.lastestNoteId().executeAsOne()
 
     private fun mapNote(
         id: Long,
