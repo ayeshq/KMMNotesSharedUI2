@@ -16,10 +16,12 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun EditNoteScreen(
+    noteId: Long,
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit
 ) {
     val viewModel = koinViewModel<EditNoteViewModel>()
+    println("NoteId = $noteId")
 
     Scaffold(
         modifier = modifier,
