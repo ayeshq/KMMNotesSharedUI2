@@ -30,3 +30,7 @@ You might need to select which iOS simiulator in the run-configuration for iOS t
 MVVM architecture. There are two view models, one for each screen: `NotesListViewModel` and `EditNoteViewModel`
 One repository for managing notes crud operations: `NotesRepository`, which is provided by Koin for both view models via constructor injection.
 And the `DatabaseDriverFactory` is also provided by koin to the `NotesRepository` via constructor injection as well.
+
+## TODO
+1. There's a remaining bug which I couldn't fix yet, and that's to update the list of notes immediately once a note was created/updated, For now, the app has to be relaaunched to see the changes on the notess list screen after adding/updating a note.
+2. General user experience and application style need to be enhanced
