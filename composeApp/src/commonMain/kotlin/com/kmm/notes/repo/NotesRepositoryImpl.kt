@@ -1,3 +1,12 @@
 package com.kmm.notes.repo
 
-class NotesRepositoryImpl : NotesRepository
+import com.kmm.notes.db.DatabaseDriverFactory
+
+class NotesRepositoryImpl(
+    private val databaseDriverFactory: DatabaseDriverFactory
+) : NotesRepository {
+
+    init {
+        println("databaseDriverFactory ref: ${databaseDriverFactory.hashCode()}")
+    }
+}
