@@ -21,6 +21,7 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,6 +41,11 @@ fun NotesListScreen(
     val state by remember { viewModel.state }
 
     val allNotes = remember { mutableStateOf(state.notes) }
+
+    //TODO find a way to update the list when a new note is added/updated adn the screen is navigated back to the list!
+    LaunchedEffect(state.notes) {
+        allNotes.value = state.notes
+    }
 
     Scaffold(
         modifier = modifier,
