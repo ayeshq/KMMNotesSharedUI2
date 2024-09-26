@@ -98,3 +98,10 @@ android {
     }
 }
 
+sqldelight {
+    databases {
+        create("NotesDatabase") {
+            packageName.set("com.kmm.notes.db")
+        }
+    }
+}
