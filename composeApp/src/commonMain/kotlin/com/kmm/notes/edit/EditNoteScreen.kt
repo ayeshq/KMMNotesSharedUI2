@@ -17,6 +17,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,8 +34,15 @@ fun EditNoteScreen(
     val viewModel = koinViewModel<EditNoteViewModel>()
     val state by remember { viewModel.state }
 
-    val title = remember { mutableStateOf(state.note?.title ?: "") }
-    val content = remember { mutableStateOf(state.note?.content ?: "") }
+    val title = remember { mutableStateOf("") }
+    val content = remember { mutableStateOf("") }
+
+    LaunchedEffect(state.note) {
+        state.note?.let {
+            title.value = it.title
+            content.value = it.content
+        }
+    }
 
     if (noteId >= 0L) {
         viewModel.loadNoteById(noteId)
