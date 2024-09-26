@@ -7,16 +7,18 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.kmm.notes.nav.SetupNavGraph
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.KoinContext
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        //TODO: Declare KoinContext here!
-        val navController = rememberNavController()
-        SetupNavGraph(
-            modifier = Modifier.fillMaxSize(),
-            navController = navController
-        )
+        KoinContext {
+            val navController = rememberNavController()
+            SetupNavGraph(
+                modifier = Modifier.fillMaxSize(),
+                navController = navController
+            )
+        }
     }
 }

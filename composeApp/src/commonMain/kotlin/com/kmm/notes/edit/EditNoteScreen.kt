@@ -12,12 +12,15 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun EditNoteScreen(
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit
 ) {
+    val viewModel = koinViewModel<EditNoteViewModel>()
+
     Scaffold(
         modifier = modifier,
         topBar = {

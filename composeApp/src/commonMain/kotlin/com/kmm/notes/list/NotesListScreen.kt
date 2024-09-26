@@ -9,12 +9,15 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun NotesListScreen(
     modifier: Modifier = Modifier,
     editNote: (Long) -> Unit
 ) {
+    val viewModel = koinViewModel<NotesListViewModel>()
+
     Scaffold(
         modifier = modifier,
         topBar = {
