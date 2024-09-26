@@ -14,7 +14,7 @@ UPDATE Note SET title = ?, content = ? WHERE id = ?;
 selectAllNotes:
 SELECT * FROM Note;
 
-selectNotById:
+selectNoteById:
 SELECT * FROM Note WHERE id = ?;
 
 deleteNoteById:
