@@ -3,11 +3,15 @@ package com.kmm.notes.list
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
+import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -83,7 +87,11 @@ fun NotesListScreen(
                     }
 
                     items(items = state.notes) {
-                        NoteCard(it, onNoteClicked)
+                        NoteCard(
+                            note = it,
+                            modifier = modifier,
+                            onNoteClicked = onNoteClicked
+                        )
                     }
                 }
             }
@@ -91,10 +99,31 @@ fun NotesListScreen(
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun NoteCard(
+    modifier: Modifier = Modifier,
     note: Note,
-    onClick: (Long) -> Unit
+    onNoteClicked: (Long) -> Unit
 ) {
-    //Column {Title, Partial content}
+    Card(
+        modifier = modifier.padding(vertical = 4.dp),
+        onClick = { onNoteClicked(note.id) }
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Text(
+                text = note.title,
+                style = MaterialTheme.typography.h4,
+                maxLines = 1
+            )
+            Spacer(modifier = Modifier.size(8.dp))
+            Text(
+                text = note.content,
+                style = MaterialTheme.typography.body1,
+                maxLines = 3
+            )
+        }
+    }
 }
