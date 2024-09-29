@@ -32,5 +32,10 @@ One repository for managing notes crud operations: `NotesRepository`, which is p
 And the `DatabaseDriverFactory` is also provided by koin to the `NotesRepository` via constructor injection as well.
 
 ## TODO
-1. There's a remaining bug which I couldn't fix yet, and that's to update the list of notes immediately once a note was created/updated, For now, the app has to be relaaunched to see the changes on the notess list screen after adding/updating a note.
+1. ~~There's a remaining bug which I couldn't fix yet, and that's to update the list of notes immediately once a note was created/updated, For now, the app has to be relaaunched to see the changes on the notess list screen after adding/updating a note.~~
 2. General user experience and application style need to be enhanced
+
+## Updates
+_ Fixed notes list not updating after creating or edditing a note.
+
+
