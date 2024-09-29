@@ -1,15 +1,18 @@
 package com.kmm.notes.repo
 
 import com.kmm.notes.entity.Note
+import kotlinx.coroutines.flow.Flow
 
 interface NotesRepository {
+
+    val notesState: Flow<List<Note>>
 
     suspend fun getAllNotes(): List<Note>
 
     suspend fun addNote(
         title: String,
         content: String
-    )
+    ): Long
 
     suspend fun getNoteById(id: Long): Note?
 
@@ -20,6 +23,4 @@ interface NotesRepository {
     )
 
     suspend fun deleteNote(note: Note)
-
-    suspend fun latestNoteId(): Long
 }

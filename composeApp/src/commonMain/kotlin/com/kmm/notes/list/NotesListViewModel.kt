@@ -26,18 +26,22 @@ class NotesListViewModel(
 
     private fun loadAllNotes() {
         viewModelScope.launch(errorHandler) {
-            val notes = notesRepository.getAllNotes()
-            _state.value = _state.value.copy(
-                isEmpty = notes.isEmpty(),
-                isError = false,
-                notes = notes
-            )
+
+            notesRepository
+                .notesState
+                .collect {
+                    _state.value = _state.value.copy(
+                        isEmpty = it.isEmpty(),
+                        isError = false,
+                        notes = it
+                    )
+                }
         }
     }
 }
 
 data class NotesListScreenState(
-    val isEmpty: Boolean = false,
+    val isEmpty: Boolean = true,
     val isError: Boolean = false,
     val notes: List<Note> = emptyList()
 )

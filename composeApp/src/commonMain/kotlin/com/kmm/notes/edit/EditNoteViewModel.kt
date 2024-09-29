@@ -33,45 +33,24 @@ class EditNoteViewModel(
     fun saveNote(title: String, content: String) {
         viewModelScope.launch(errorHandler) {
             if (noteId >= 0) {
-                updateNote(
+                notesRepository.updateNote(
+                    id = noteId,
                     title = title,
                     content = content
                 )
             } else {
-                addNewNote(
+                noteId = notesRepository.addNote(title, content)
+            }
+
+            _state.value = _state.value.copy(
+                isError = false,
+                note = Note(
+                    id = noteId,
                     title = title,
                     content = content
                 )
-            }
-        }
-    }
-
-    private suspend fun updateNote(
-        title: String,
-        content: String
-    ) {
-        notesRepository.updateNote(
-            id = noteId,
-            title = title,
-            content = content
-        )
-    }
-
-    private suspend fun addNewNote(
-        title: String,
-        content: String
-    ) {
-        notesRepository.addNote(title, content)
-        noteId = notesRepository.latestNoteId()
-
-        //If the user saves a new note for the first time fetch the new note id,
-        _state.value = _state.value.copy(
-            note = Note(
-                id = noteId,
-                title = title,
-                content = content
             )
-        )
+        }
     }
 }
 
