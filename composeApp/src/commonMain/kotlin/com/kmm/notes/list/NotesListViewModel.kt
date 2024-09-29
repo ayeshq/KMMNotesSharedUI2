@@ -21,10 +21,10 @@ class NotesListViewModel(
     val state: State<NotesListScreenState> = _state
 
     init {
-        loadAllNotes()
+        observeNotesListState()
     }
 
-    private fun loadAllNotes() {
+    private fun observeNotesListState() {
         viewModelScope.launch(errorHandler) {
 
             notesRepository

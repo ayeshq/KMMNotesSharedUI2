@@ -15,7 +15,10 @@ class NotesApplication : Application() {
 
         val androidMode = module {
             single { androidContext() }
-            single<DatabaseDriverFactory> { AndroidDatabaseDriverFactory(this@NotesApplication) }
+            single<DatabaseDriverFactory> {
+                //AndroidDatabaseDriverFactory(get()) //Causes recursive dependencies error for some reason!!
+                AndroidDatabaseDriverFactory(this@NotesApplication)
+            }
         }
 
         startKoin {
